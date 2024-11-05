@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Movie>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="home-slider owl-carousel">
+    @foreach(var movie in Model)
+    {
+        <div class="slider-item" style="background-image: url('@Url.Content("~/images/"+movie.PosterPath)');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-8 col-sm-12 text-center ftco-animate">
+                        <span class="subheading">Now Showing</span>
+                        <h1 class="mb-4">@movie.MovieTitle</h1>
+                        
+                        <p><a asp-action="Index" asp-controller="Reservation" asp-route-id="@movie.MovieId" class="btn btn-primary p-3 px-xl-4 py-xl-3">Book</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</section>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <span class="subheading">Discover</span>
+                
+                
+            </div>
+        </div>
+        <div class="row">
+            @foreach(var movie in Model)
+            {
+                <div class="col-md-3">
+                    <div class="menu-entry">
+                        <a asp-action="Index" asp-controller="Reservation" asp-route-id="@movie.MovieId" class="img" style="background-image:url('@Url.Content("~/images/"+movie.PosterPath)');"></a>
+                        <div class="text text-center pt-4">
+                            <h3><a href="#">@movie.MovieTitle</a></h3>
+                            <p>@movie.Genre</p>
+
+                            <p><a asp-action="Index" asp-controller="Reservation" asp-route-id="@movie.MovieId" class="btn btn-primary btn-outline-primary">Book Now</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

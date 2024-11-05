@@ -1,0 +1,60 @@
+﻿@model List<SeatsMap>
+@{
+    ViewData["Title"] = "ChooseYourSeat";
+}
+
+<h1></h1>
+@{
+    int counter = 1;
+    int counter2 = 1;
+
+}
+<div style="position: relative; height: 100vh; width: 100vw;">
+<div style="height:100px; width:300px ; background-color:aliceblue ; top: 20%; left: 37%; position: absolute; display: flex; justify-content: center; align-items: center; font-weight:bold; font-size:30px">Screen</div>
+<div style="top: 37%; left: 37%; position: absolute;">
+        
+    
+    @foreach (var seat in Model)
+    {
+
+        if (seat.TheSeat == Seat.SeatState.Empty)
+        {
+                <a asp-action="ReserveSeat" asp-route-DT="@seat.DateAndTime" asp-route-MN="@seat.MovieName" asp-route-hallType="@seat.HallType" asp-route-SeatNumber="@counter2" class="btn btn-success"></a>
+
+        }
+        else if (seat.TheSeat == Seat.SeatState.Reserved)
+        {
+            <a class="btn btn-warning"></a>
+        }
+        else if (seat.TheSeat == Seat.SeatState.Unavaliable)
+        {
+            <a class="btn btn-danger"></a>
+        }
+        if (counter == 10)
+        {
+                <br />
+                counter = 0;
+        }
+            counter++;
+            counter2++;
+    }
+        <div class="form-control">
+            
+            <a class="btn btn-success" style="color:black">Empty seats</a><a class="btn btn-warning" style="color:black">Reserved</a><a class="btn btn-danger" style="color:black">Unavailable</a>
+            <br />
+            <br />
+            <div>
+                @if (ViewBag.SeatNumber!=0)
+                {
+                    <p>Your Seats: </p>
+                    <p>A ticket for the seat #@ViewBag.SeatNumber for @Model[0].MovieName : 12JD</p>
+                    <a asp-action="ResInfo" asp-route-SN="@ViewBag.SeatNumber" asp-route-MN="@Model[0].MovieName" asp-route-DT="@Model[0].DateAndTime" asp-route-HN="@Model[0].HallName" class="btn btn-success">Continue</a>
+                }
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+<
+

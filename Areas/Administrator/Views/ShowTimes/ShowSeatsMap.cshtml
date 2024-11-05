@@ -1,0 +1,32 @@
+﻿@model List<SeatsMap>
+@{
+    ViewData["Title"] = "ShowSeatsMap";
+}
+
+<h1>ShowSeatsMap</h1>
+@{int counter = 1;}
+<div style="height:100px; width:370px ; background-color:aliceblue ; top: 20%; left: 45%; position: absolute; display: flex; justify-content: center; align-items: center; font-weight:bold; font-size:30px">Screen</div>
+<div style="top: 40%; left: 45%; position: absolute;">
+@foreach(var seat in Model)
+{
+    
+    if(seat.TheSeat == Seat.SeatState.Empty)
+    {
+            <a asp-action="EditSeatsMap" class="btn btn-success" asp-route-id="@seat.Id">s</a>
+    }
+    else if(seat.TheSeat == Seat.SeatState.Reserved)
+    {
+            <a asp-action="EditSeatsMap" class="btn btn-warning" asp-route-id="@seat.Id">s</a>
+    }
+    else if (seat.TheSeat == Seat.SeatState.Unavaliable)
+    {
+            <a asp-action="EditSeatsMap" class="btn btn-danger" asp-route-id="@seat.Id">s</a>
+    }
+    if(counter==10)
+    {
+        <br/>
+        counter = 0;
+    }
+    counter++;
+}
+</div>

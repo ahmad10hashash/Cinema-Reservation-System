@@ -1,0 +1,52 @@
+﻿@model Reservation
+@{
+    ViewData["Title"] = "ResInfo";
+    
+}
+
+
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-md-4">
+        <form asp-action="ResInfo" method="post">
+            
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h1>Register</h1>
+            <br />
+            
+            <input type="hidden" asp-for="MovieName" value="@ViewBag.MN" />
+            <input type="hidden" asp-for="SeatNumber" value="@ViewBag.SN" />
+            <input type="hidden" asp-for="DateAndTime" value="@ViewBag.DT" />
+            <input type="hidden" asp-for="HallName" value="@ViewBag.HN" />
+            <input type="hidden" asp-for="ClientEmail" value="@ViewBag.UserEmail" />
+            <div class="form-group">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-primary" />
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

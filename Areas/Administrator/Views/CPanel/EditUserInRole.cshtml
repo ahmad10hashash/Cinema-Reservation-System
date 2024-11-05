@@ -1,0 +1,29 @@
+﻿@using CMSpro1.Models.ViewModels
+@model List<UserRoleViewModel>
+@{
+    ViewData["Title"] = "EditUserInRole";
+}
+
+<h1>EditUserInRole</h1>
+<form method="post" asp-action="EditUserInRole">
+    <div class="card">
+        <div class="card-header">
+            Add or remove users from this role
+        </div>
+        <div class="card-body">
+            @for(int i=0; i<Model.Count; i++)
+            {
+                <input type="hidden" asp-for="@Model[i].UserName"/>
+                <input type="hidden" asp-for="@Model[i].UserId" />
+                <input asp-for="@Model[i].IsSelected"/>
+                <label asp-for="@Model[i].IsSelected">@Model[i].UserName</label>
+                <br/>
+            }
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Update" class="btn btn-outline-success"/>
+            <a asp-action="RolesList" class="btn btn-outline-warning">Cancel</a>
+        </div>
+    </div>
+</form>
+

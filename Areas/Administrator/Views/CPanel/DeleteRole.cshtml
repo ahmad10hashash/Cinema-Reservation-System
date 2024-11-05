@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityRole
+@{
+    ViewData["Title"] = "DeleteRole";
+}
+
+<div class="text-center">
+    <h1>Are You sure to delete @Model.Name Role??</h1>
+    
+        <form asp-action="DeleteRole" method="post">
+            <input type="submit" name="Yes" value="Yes" class="btn btn-danger" asp-route-RoleName="@Model.Name" />
+        </form>
+        <a asp-action="RolesList" class="btn btn-success">No</a>
+    
+    
+</div>
+
+
+
